@@ -280,11 +280,48 @@
     .table td {
       text-align: center;
     }
+.period-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.period-btn {
+  background: #1f3b55;
+  border: 1px solid #3b82f6;
+  color: #e5e7eb;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.period-btn:hover {
+  background: #2563eb;
+}
+
+.period-btn.active {
+  background: #3b82f6;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(59,130,246,0.7);
+}
   </style>
 </head>
 <body>
   <h2 class="dashboard-title">Milestone 2: Data Processing</h2>
-
+  <div class="period-selector">
+  <button class="period-btn active" onclick="updatePeriod(30)">
+    📅 30 Days
+  </button>
+  <button class="period-btn" onclick="updatePeriod(90)">
+    📆 90 Days
+  </button>
+  <button class="period-btn" onclick="updatePeriod(365)">
+    🗓️ 1 Year
+  </button>
+</div>
   <div class="row">
     <!-- Metrics Table -->
     <div class="col-md-6">
@@ -312,8 +349,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Volatility Chart -->
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">Volatility Comparison</div>
@@ -323,8 +358,46 @@
       </div>
     </div>
   </div>
+  <script>
+let currentPeriod = 30;
+const riskData = {
+  30: {
+    labels: ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'],
+    volatility: [3.8, 4.1, 5.2, 5.3, 6.7]
+  },
+  90: {
+    labels: ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'],
+    volatility: [4.6, 4.9, 6.1, 6.4, 7.9]
+  },
+  365: {
+    labels: ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'],
+    volatility: [5.2, 5.8, 7.3, 7.5, 9.4]
+  }
+};
 
-  <!-- Plotly JS -->
+function updatePeriod(period) {
+  currentPeriod = period;
+  document.querySelectorAll('.period-btn').forEach(btn =>
+    btn.classList.remove('active')
+  );
+  event.target.classList.add('active');
+  Plotly.newPlot(
+    'volatilityChart',
+    [{
+      x: riskData[period].labels,
+      y: riskData[period].volatility,
+      type: 'bar'
+    }],
+    {
+      title: `Crypto Volatility (${period} Days)`,
+      yaxis: { title: 'Volatility (%)' },
+      template: 'plotly_dark'
+    }
+  );
+}
+updatePeriod(30);
+</script>
+
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script>
     const data = [{
