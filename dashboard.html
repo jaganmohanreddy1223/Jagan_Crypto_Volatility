@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Crypto Volatility and Risk Analyzer</title>
+
+  <style>
+    :root{
+      --accent:#00b4ff;
+      --bg-overlay:rgba(10,10,10,0.55);
+      --max-width:1200px;
+      --heading-font:'Georgia', 'Times New Roman', serif;
+      --ui-font:'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      font-family:var(--ui-font);
+      color:#fff;
+      background:#111;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    /* Hero wrapper */
+    .hero{
+      width:100%;
+      max-width:var(--max-width);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    /* Background */
+    .hero__bg{
+      position:relative;
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background-image:url('background.jpg'); /* replace image */
+      background-size:cover;
+      background-position:center;
+    }
+
+    .hero__bg::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:var(--bg-overlay);
+    }
+
+    /* Content */
+    .hero__content{
+      position:relative;
+      z-index:2;
+      padding:56px 40px;
+      text-align:center;
+      width:100%;
+    }
+
+    .title-top{
+      font-family:var(--heading-font);
+      font-size:30px;
+      color:#000;
+      background:#fff;
+      padding:8px 18px;
+      border-radius:999px;
+      display:inline-block;
+      margin-bottom:18px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    h1{
+      font-family:var(--heading-font);
+      font-size:48px;
+      color:var(--accent);
+      margin-bottom:12px;
+      text-shadow:0 6px 22px rgba(0,0,0,0.6);
+    }
+
+    p.lead{
+      font-size:18px;
+      opacity:0.95;
+      margin-bottom:24px;
+    }
+
+    .divider{
+      width:60px;
+      height:4px;
+      background:linear-gradient(90deg,var(--accent),#24e3ff);
+      margin:18px auto;
+      border-radius:2px;
+    }
+
+    /* Icons */
+    .icons{
+      display:flex;
+      gap:18px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .icon-card{
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      padding:12px 18px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:170px;
+    }
+
+    .icon-card svg{
+      width:28px;
+      height:28px;
+    }
+
+    .icon-card .label{
+      font-size:14px;
+    }
+
+    /* Milestone Buttons */
+    .milestones{
+      margin-top:36px;
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .milestones a{
+      text-decoration:none;
+    }
+
+    .milestone-btn{
+      background:linear-gradient(135deg,var(--accent),#24e3ff);
+      color:#000;
+      padding:12px 26px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.35);
+      transition:transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .milestone-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 26px rgba(0,0,0,0.45);
+    }
+
+    /* Footer */
+    .hero__meta{
+      background:#fff;
+      padding:16px;
+      text-align:center;
+      color:#111;
+      font-size:14px;
+    }
+
+    /* Responsive */
+    @media (max-width:800px){
+      h1{font-size:34px}
+      .hero__content{padding:36px 22px}
+      .title-top{font-size:20px}
+      .icon-card{min-width:140px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <div class="hero__bg">
+      <div class="hero__content">
+
+        <div class="title-top">Crypto Volatility and Risk Analyzer</div>
+
+        <h1>Crypto Volatility and Risk Analyzer</h1>
+
+        <div class="divider"></div>
+
+        <p class="lead">Analyzing Cryptocurrency Risk Through Data Visualization</p>
+
+        <!-- Icons -->
+        <div class="icons">
+          <div class="icon-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M8 14v-4"/>
+              <path d="M12 18V8"/>
+              <path d="M16 12v-2"/>
+            </svg>
+            <div class="label">Data Analysis</div>
+          </div>
+
+          <div class="icon-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M21 16V8a2 2 0 0 0-2-2h-6"/>
+              <path d="M3 8v8a2 2 0 0 0 2 2h14"/>
+              <path d="M8 10l2 2 4-4"/>
+            </svg>
+            <div class="label">Risk Metrics</div>
+          </div>
+
+          <div class="icon-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M3 3v18h18"/>
+              <path d="M7 12l3-3 3 6 4-8"/>
+            </svg>
+            <div class="label">Visualization</div>
+          </div>
+        </div>
+
+        <!-- Milestone Buttons -->
+        <div class="milestones">
+          <a href="milestone1.html"><div class="milestone-btn">Milestone 1</div></a>
+          <a href="milestone2.html"><div class="milestone-btn">Milestone 2</div></a>
+          <a href="http://localhost:8501" target="_blank">
+    <div class="milestone-btn">Milestone 3</div>
+  </a>
+          <a href="http://localhost:8502" target="_blank">
+    <div class="milestone-btn">Milestone 4</div>
+  </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero__meta">
+      Built with Python, Streamlit &amp; JavaScript  • Data Sources: CoinGecko / Kaggle
+    </div>
+  </div>
+
+</body>
+</html>
