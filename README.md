@@ -37,8 +37,11 @@ jagan	crypto123
 
 ## How to Run Locally
 git clone https://github.com/jaganmohanreddy1223/Jagan_Crypto_Volatility
+
 cd Jagan_Crypto_Volatility
+
 pip install -r requirements.txt
+
 streamlit run app.py
 ## Live Demo
 
