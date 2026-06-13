@@ -50,6 +50,7 @@ streamlit run app.py
 ## Demo Log-In Credentials
 To access the dashboard, use:
 Username            admin
+
 Password            admin123
 
 ## Project Highlights
