@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Crypto Volatility and Risk Analyzer</title>
+
+  <style>
+    :root{
+      --accent:#00b4ff;
+      --bg-overlay:rgba(10,10,10,0.55);
+      --max-width:1200px;
+      --heading-font:'Georgia','Times New Roman',serif;
+      --ui-font:'Helvetica Neue',Arial,sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      font-family:var(--ui-font);
+      color:#fff;
+      background:#111;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .hero{
+      width:100%;
+      max-width:var(--max-width);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .hero__bg{
+      position:relative;
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#000;
+    }
+
+    .hero__bg::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:var(--bg-overlay);
+    }
+
+    .hero__content{
+      position:relative;
+      z-index:2;
+      padding:56px 40px;
+      text-align:center;
+      width:100%;
+    }
+
+    .title-top{
+      font-family:var(--heading-font);
+      font-size:30px;
+      color:#000;
+      background:#fff;
+      padding:8px 18px;
+      border-radius:999px;
+      display:inline-block;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-family:var(--heading-font);
+      font-size:48px;
+      color:var(--accent);
+      margin-bottom:12px;
+    }
+
+    p.lead{
+      font-size:18px;
+      margin-bottom:24px;
+    }
+
+    .divider{
+      width:60px;
+      height:4px;
+      background:linear-gradient(90deg,var(--accent),#24e3ff);
+      margin:18px auto;
+      border-radius:2px;
+    }
+
+    .milestones{
+      margin-top:36px;
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .milestone-btn{
+      background:linear-gradient(135deg,var(--accent),#24e3ff);
+      color:#000;
+      padding:12px 26px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    .hero__meta{
+      background:#fff;
+      padding:16px;
+      text-align:center;
+      color:#111;
+      font-size:14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="hero__bg">
+    <div class="hero__content">
+
+      <div class="title-top">Crypto Volatility and Risk Analyzer</div>
+      <h1>Crypto Volatility and Risk Analyzer</h1>
+      <div class="divider"></div>
+      <p class="lead">Analyzing Cryptocurrency Risk Through Data Visualization</p>
+
+      <!-- Visual-only milestone cards -->
+      <div class="milestones">
+        <div class="milestone-btn">Data Acquisition</div>
+        <div class="milestone-btn">Data Processing</div>
+        <div class="milestone-btn">Data Analysis</div>
+        <div class="milestone-btn">Data Reporting</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hero__meta">
+    Built with Python, Streamlit &amp; JavaScript • Data Sources: CoinGecko / Kaggle
+  </div>
+</div>
+
+</body>
+</html>

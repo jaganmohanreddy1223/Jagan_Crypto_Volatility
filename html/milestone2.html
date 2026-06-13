@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crypto Risk Metrics Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #2c3e50; /* Dark steel blue-grey */
+      padding: 20px;
+      color: #ecf0f1; /* Light grey text */
+      font-family: Arial, sans-serif;
+    }
+    .dashboard-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ecf0f1;
+    }
+    .card {
+      margin-bottom: 20px;
+      background-color: #34495e; /* Steel blue-grey box */
+      color: #ecf0f1;
+      border: 2px solid #1c2833; /* Dark border for box effect */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Box shadow for depth */
+    }
+    .card-header {
+      background-color: #1c2833; /* Darker header */
+      color: #ecf0f1;
+      font-weight: bold;
+      text-align: center;
+    }
+    .table {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+    }
+    .table th {
+      background-color: #1c2833;
+      color: #ecf0f1;
+      text-align: center;
+    }
+    .table td {
+      text-align: center;
+    }
+.period-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.period-btn {
+  background: #1f3b55;
+  border: 1px solid #3b82f6;
+  color: #e5e7eb;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.period-btn:hover {
+  background: #2563eb;
+}
+
+.period-btn.active {
+  background: #3b82f6;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(59,130,246,0.7);
+}
+  </style>
+</head>
+<body>
+  <h2 class="dashboard-title">Data Processing</h2>
+  <div class="period-selector">
+  <button class="period-btn active" onclick="updatePeriod(30)">
+    📅 30 Days
+  </button>
+  <button class="period-btn" onclick="updatePeriod(90)">
+    📆 90 Days
+  </button>
+  <button class="period-btn" onclick="updatePeriod(365)">
+    🗓️ 1 Year
+  </button>
+</div>
+  <div class="row">
+    <!-- Metrics Table -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Risk Metrics Table</div>
+        <div class="card-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Crypto</th>
+                <th>Volatility</th>
+                <th>Sharpe</th>
+                <th>Beta</th>
+                <th>VaR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>BTC</td><td>3.82%</td><td>1.24</td><td>1.00</td><td>3.2%</td></tr>
+              <tr><td>ETH</td><td>4.11%</td><td>1.18</td><td>1.15</td><td>6.3%</td></tr>
+              <tr><td>SOL</td><td>5.29%</td><td>0.82</td><td>1.67</td><td>8.9%</td></tr>
+              <tr><td>ADA</td><td>5.31%</td><td>0.75</td><td>1.42</td><td>8.1%</td></tr>
+              <tr><td>DOGE</td><td>6.74%</td><td>0.64</td><td>2.13</td><td>11.5%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Volatility Comparison</div>
+        <div class="card-body">
+          <div id="volatilityChart" style="height: 300px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+let currentPeriod = 30;
+const riskData = {
+  30: {
+    labels: ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'],
+    volatility: [3.8, 4.1, 5.2, 5.3, 6.7]
+  },
+  90: {
+    labels: ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'],
+    volatility: [4.6, 4.9, 6.1, 6.4, 7.9]
+  },
+  365: {
+    labels: ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'],
+    volatility: [5.2, 5.8, 7.3, 7.5, 9.4]
+  }
+};
+
+function updatePeriod(period) {
+  currentPeriod = period;
+  document.querySelectorAll('.period-btn').forEach(btn =>
+    btn.classList.remove('active')
+  );
+  event.target.classList.add('active');
+  Plotly.newPlot(
+    'volatilityChart',
+    [{
+      x: riskData[period].labels,
+      y: riskData[period].volatility,
+      type: 'bar'
+    }],
+    {
+      title: `Crypto Volatility (${period} Days)`,
+      yaxis: { title: 'Volatility (%)' },
+      template: 'plotly_dark'
+    }
+  );
+}
+updatePeriod(30);
+</script>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    const data = [{
+      x: ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'],
+      y: [3.82, 4.11, 5.29, 5.31, 6.74],
+      type: 'bar',
+      marker: { color: '#2980b9' } // Steel blue bars
+    }];
+
+    const layout = {
+      title: 'Crypto Volatility (%)',
+      yaxis: { title: 'Volatility (%)', color: '#ecf0f1' },
+      xaxis: { color: '#ecf0f1' },
+      plot_bgcolor: '#2c3e50',
+      paper_bgcolor: '#2c3e50',
+      font: { color: '#ecf0f1' },
+      margin: { t: 40, l: 50, r: 20, b: 50 }
+    };
+
+    Plotly.newPlot('volatilityChart', data, layout);
+  </script>
+</body>
+</html>
